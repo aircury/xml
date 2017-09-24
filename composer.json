@@ -1,0 +1,27 @@
+{
+    "name": "aircury/xml",
+    "description": "XML manipulation with PHP made easy",
+    "keywords": [],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Diaz",
+            "email": "jose@aircury.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Aircury\\Xml\\": "."
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "aircury/collection": "^1.0@dev"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

@@ -85,7 +85,10 @@ class Node
         return $matchingNodes;
     }
 
-    public function getNamedChild(string $childName, array $attributes, bool $createIfMissing = false): Node
+    /**
+     * @param string[] $attributes
+     */
+    public function getNamedChild(string $childName, array $attributes = [], bool $createIfMissing = true): Node
     {
         $namedChildren = $this->getNamedChildren($childName, $attributes, $createIfMissing);
 

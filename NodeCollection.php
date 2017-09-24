@@ -29,8 +29,10 @@ class NodeCollection extends AbstractCollection
         } else {
             if (!array_key_exists($this->indexBy, $element->attributes)) {
                 throw new \LogicException(
-                    'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
-                    $this->indexBy
+                    sprintf(
+                        'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
+                        $this->indexBy
+                    )
                 );
             }
 

@@ -2,7 +2,7 @@
 
 namespace Aircury\Xml;
 
-class Node
+class Node implements \ArrayAccess
 {
     /**
      * @var string
@@ -17,7 +17,7 @@ class Node
     /**
      * @var string
      */
-    private $contents;
+    public $contents;
 
     /**
      * @var NodeCollection
@@ -37,6 +37,30 @@ class Node
         $this->attributes = $attributes;
         $this->contents   = trim($contents);
         $this->children   = new NodeCollection();
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return array_key_exists($offset, $this->attributes);
+    }
+
+    public function offsetGet($offset)
+    {
+        if (!array_key_exists($offset, $this->attributes)) {
+            throw new \LogicException(sprintf('The Node doesn\'t have an attribute with the name %s', $offset));
+        }
+
+        return $this->attributes[$offset];
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        $this->attributes[$offset] = $value;
+    }
+
+    public function offsetUnset($offset): void
+    {
+        unset($this->attributes[$offset]);
     }
 
     public function addChild(Node $child): Node

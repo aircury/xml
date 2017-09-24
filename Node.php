@@ -62,22 +62,48 @@ class Node
         return $this;
     }
 
-    public function getNamedChildren(string $childName, bool $createIfMissing = false): NodeCollection
+    public function getNamedChildren(string $childName, array $attributes, bool $createIfMissing = false): NodeCollection
     {
         if (!isset($this->namedChildren[$childName])) {
             if (!$createIfMissing) {
                 return new NodeCollection();
             }
 
-            $this->addChild(new Node($childName));
+            $this->addChild(new Node($childName, $attributes));
+
+            return $this->namedChildren[$childName];
         }
 
-        return $this->namedChildren[$childName];
+        $matchingNodes = $this->namedChildren[$childName]->filterByAttributes($attributes);
+
+        if ($matchingNodes->isEmpty()) {
+            $this->addChild(new Node($childName, $attributes));
+
+            return $this->namedChildren[$childName]->filterByAttributes($attributes);
+        }
+
+        return $matchingNodes;
+    }
+
+    public function getNamedChild(string $childName, array $attributes, bool $createIfMissing = false): Node
+    {
+        $namedChildren = $this->getNamedChildren($childName, $attributes, $createIfMissing);
+
+        if ($namedChildren->count() !== 1) {
+            throw new \LogicException(
+                sprintf(
+                    'It was expecting exactly one match, but got %d. Maybe you didn\'t ask to create it if missing?',
+                    $namedChildren->count()
+                )
+            );
+        }
+
+        return $namedChildren->first();
     }
 
     public function getIndexedChild(string $childName, string $attributeValue, bool $createIfMissing = false): ?Node
     {
-        $children = $this->getNamedChildren($childName, $createIfMissing);
+        $children = $this->getNamedChildren($childName, [], $createIfMissing);
 
         if (null === ($attribute = $children->getIndexBy())) {
             throw new \LogicException(sprintf('The NodeCollection %s is not indexed by any attribute', $childName));
@@ -98,6 +124,8 @@ class Node
 
     public function writeXml(\XMLWriter $xmlWriter): void
     {
+        $this->attributes = array_map('strval', $this->attributes);
+
         $xmlWriter->startElement($this->name);
 
         foreach ($this->attributes as $name => $value) {

@@ -111,6 +111,10 @@ class NodeCollection extends AbstractCollection
             }
         }
 
+        if (null !== $this->indexBy) {
+            $nodes->indexByAttribute($this->indexBy);
+        }
+
         return $nodes;
     }
 
@@ -119,6 +123,18 @@ class NodeCollection extends AbstractCollection
         return $this->filterByClosure(
             function (Node $node) use ($attribute, $value) {
                 return array_key_exists($attribute, $node->attributes) && $node->attributes[$attribute] === $value;
+            }
+        );
+    }
+
+    /**
+     * @param string[] $attributes
+     */
+    public function filterByAttributes(array $attributes): NodeCollection
+    {
+        return $this->filterByClosure(
+            function (Node $node) use ($attributes) {
+                return array_intersect_key($node->attributes, $attributes) == $attributes;
             }
         );
     }

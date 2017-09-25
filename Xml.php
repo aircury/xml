@@ -4,6 +4,11 @@ namespace Aircury\Xml;
 
 class Xml
 {
+    public static function parseString(string $xmlString): Node
+    {
+        return static::parseElement(simplexml_load_string($xmlString));
+    }
+
     public static function parseFile(string $path): Node
     {
         return static::parseElement(simplexml_load_file($path));

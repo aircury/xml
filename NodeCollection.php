@@ -18,7 +18,7 @@ class NodeCollection extends AbstractCollection
 
     public function offsetSet($offset, $element): void
     {
-        if (null !== $offset && null === $offset) {
+        if (null !== $offset && null === $this->indexBy) {
             throw new \LogicException('The NodeCollection is not indexed by an attribute so you cannot use an offset');
         }
 
@@ -75,22 +75,22 @@ class NodeCollection extends AbstractCollection
 
         foreach ($nodes as $node) {
             if (!array_key_exists($this->indexBy, $node->attributes)) {
-                throw new \LogicException(
-                    'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
-                    $attribute
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
+                        $attribute
+                    )
                 );
             }
 
             if ($this->offsetExists($node->attributes[$attribute])) {
-                if (isset($nodes[$this->indexBy])) {
-                    throw new \LogicException(
-                        sprintf(
-                            'In order to index a NodeCollection by the attribute %s, they must be unique. The attribute \'%s\' is repeated',
-                            $this->indexBy,
-                            $node->attributes[$attribute]
-                        )
-                    );
-                }
+                throw new \LogicException(
+                    sprintf(
+                        'In order to index a NodeCollection by the attribute %s, they must be unique. The attribute \'%s\' is repeated',
+                        $this->indexBy,
+                        $node->attributes[$attribute]
+                    )
+                );
             }
 
             $this[] = $node;
@@ -99,7 +99,8 @@ class NodeCollection extends AbstractCollection
         return $this;
     }
 
-    public function getIndexBy(): ?string {
+    public function getIndexBy(): ?string
+    {
         return $this->indexBy;
     }
 

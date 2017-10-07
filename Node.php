@@ -128,7 +128,9 @@ class Node implements \ArrayAccess
         if (1 !== $namedChildren->count()) {
             throw new \LogicException(
                 sprintf(
-                    'It was expecting exactly one match, but got %d. Maybe you didn\'t ask to create it if missing?',
+                    'It was expecting exactly one match of \'%s\' %s, but got %d. Maybe you didn\'t ask to create it if missing?',
+                    $childName,
+                    json_encode($attributes),
                     $namedChildren->count()
                 )
             );

@@ -72,7 +72,7 @@ class Node implements \ArrayAccess
         $this->children[]                    = $child;
         $this->namedChildren[$child->name][] = $child;
 
-        return $child;
+        return $this;
     }
 
     public function indexByAttribute(string $childName, string $attribute): Node

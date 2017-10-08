@@ -159,4 +159,16 @@ class Node implements \ArrayAccess
 
         $xmlWriter->endElement();
     }
+
+    public function dump(): string
+    {
+        $xmlWriter = new \XMLWriter();
+        $xmlWriter->openMemory();
+        $xmlWriter->setIndent(true);
+        $xmlWriter->setIndentString('  ');
+        $this->writeXml($xmlWriter);
+        $xmlWriter->endDocument();
+
+        return trim(str_replace('/>', ' />', $xmlWriter->outputMemory()));
+    }
 }

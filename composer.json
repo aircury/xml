@@ -17,7 +17,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "aircury/collection": "^1.0@dev"
+        "aircury/collection": "dev-master"
     },
     "extra": {
         "branch-alias": {

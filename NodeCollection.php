@@ -5,13 +5,13 @@ namespace Aircury\Xml;
 use Aircury\Collection\AbstractCollection;
 
 /**
- * @method Node           offsetGet($offset)
- * @method Node[]         toArray()
- * @method Node[]         toValuesArray()
- * @method Node|null      first()
- * @method Node|null      last()
- * @method bool           removeElement(Node $element)
- * @method Node|null      pop()
+ * @method Node      offsetGet($offset)
+ * @method Node[]    toArray()
+ * @method Node[]    toValuesArray()
+ * @method Node|null first()
+ * @method Node|null last()
+ * @method bool      removeElement(Node $element)
+ * @method Node|null pop()
  */
 class NodeCollection extends AbstractCollection
 {

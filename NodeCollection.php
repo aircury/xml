@@ -4,6 +4,15 @@ namespace Aircury\Xml;
 
 use Aircury\Collection\AbstractCollection;
 
+/**
+ * @method Node           offsetGet($offset)
+ * @method Node[]         toArray()
+ * @method Node[]         toValuesArray()
+ * @method Node|null      first()
+ * @method Node|null      last()
+ * @method bool           removeElement(Node $element)
+ * @method Node|null      pop()
+ */
 class NodeCollection extends AbstractCollection
 {
     /**
@@ -26,44 +35,18 @@ class NodeCollection extends AbstractCollection
             parent::offsetSet($offset, $element);
 
             return;
-        } else {
-            if (!array_key_exists($this->indexBy, $element->attributes)) {
-                throw new \LogicException(
-                    sprintf(
-                        'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
-                        $this->indexBy
-                    )
-                );
-            }
-
-            parent::offsetSet($element->attributes[$this->indexBy], $element);
         }
-    }
 
-    public function offsetGet($offset): Node
-    {
-        return $this->doOffsetGet($offset);
-    }
+        if (!array_key_exists($this->indexBy, $element->attributes)) {
+            throw new \LogicException(
+                sprintf(
+                    'A NodeCollection was requested to index by the attribute %s, but found a node that doesn\'t have it',
+                    $this->indexBy
+                )
+            );
+        }
 
-    /**
-     * @return Node[]
-     */
-    public function toArray(): array
-    {
-        return $this->getElements();
-    }
-
-    /**
-     * @return Node[]
-     */
-    public function toValuesArray(): array
-    {
-        return parent::toValuesArray();
-    }
-
-    public function first(): Node
-    {
-        return $this->doGetFirst();
+        parent::offsetSet($element->attributes[$this->indexBy], $element);
     }
 
     public function indexByAttribute(string $attribute): NodeCollection
@@ -104,7 +87,7 @@ class NodeCollection extends AbstractCollection
         return $this->indexBy;
     }
 
-    public function filterByClosure(callable $filter): NodeCollection
+    public function filter(callable $filter, bool $returnNewCollection = true)
     {
         $nodes = new NodeCollection();
 
@@ -123,7 +106,7 @@ class NodeCollection extends AbstractCollection
 
     public function filterByAttribute(string $attribute, string $value): NodeCollection
     {
-        return $this->filterByClosure(
+        return $this->filter(
             function (Node $node) use ($attribute, $value) {
                 return array_key_exists($attribute, $node->attributes) && $node->attributes[$attribute] === $value;
             }
@@ -135,7 +118,7 @@ class NodeCollection extends AbstractCollection
      */
     public function filterByAttributes(array $attributes): NodeCollection
     {
-        return $this->filterByClosure(
+        return $this->filter(
             function (Node $node) use ($attributes) {
                 return array_intersect_key($node->attributes, $attributes) == $attributes;
             }

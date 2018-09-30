@@ -1,3 +1,5 @@
+/vendor/
+
 # IDE
 .idea/
 Xml.iml

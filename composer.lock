@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "dab0fa6367c46f155b5d0565afdfd339",
+    "packages": [
+        {
+            "name": "aircury/collection",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aircury/collection.git",
+                "reference": "bfae2eb14024b561a7b391bf527159f8a08cc499"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aircury/collection/zipball/bfae2eb14024b561a7b391bf527159f8a08cc499",
+                "reference": "bfae2eb14024b561a7b391bf527159f8a08cc499",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aircury\\Collection\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Diaz",
+                    "email": "jose@aircury.com"
+                }
+            ],
+            "description": "Library to provide collection structures, to use instead of arrays",
+            "time": "2018-09-15T18:21:54+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "aircury/collection": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

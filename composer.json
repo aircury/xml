@@ -19,6 +19,14 @@
     "require": {
         "aircury/collection": "dev-master"
     },
+    "config": {
+        "preferred-install": {
+            "*": "source"
+        },
+        "sort-packages": true,
+        "bin-dir": "bin",
+        "discard-changes": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

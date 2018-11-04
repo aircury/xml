@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aircury/collection.git",
-                "reference": "1b504ffe19a51127a84aaba9d63966a8cfa3b25f"
+                "reference": "870f81d64dccd1ea9232316806a6a02adcab9342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aircury/collection/zipball/1b504ffe19a51127a84aaba9d63966a8cfa3b25f",
-                "reference": "1b504ffe19a51127a84aaba9d63966a8cfa3b25f",
+                "url": "https://api.github.com/repos/aircury/collection/zipball/870f81d64dccd1ea9232316806a6a02adcab9342",
+                "reference": "870f81d64dccd1ea9232316806a6a02adcab9342",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 }
             ],
             "description": "Library to provide collection structures, to use instead of arrays",
-            "time": "2018-10-01T19:32:14+00:00"
+            "time": "2018-10-28T10:57:45+00:00"
         }
     ],
     "packages-dev": [],

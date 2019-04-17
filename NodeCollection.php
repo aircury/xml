@@ -51,7 +51,7 @@ class NodeCollection extends AbstractCollection
 
     public function indexByAttribute(string $attribute): NodeCollection
     {
-        $nodes         = $this->toArray();
+        $nodes = $this->toArray();
         $this->indexBy = $attribute;
 
         $this->setElements([]);

@@ -10,7 +10,7 @@ class NodeTest extends TestCase
     public function testArrayAccess(): void
     {
         $city = new Node('city');
-        $car  = new Node('car', ['make' => 'Seat']);
+        $car = new Node('car', ['make' => 'Seat']);
         $cave = new Node('cave');
 
         // Testing OffsetExists
@@ -43,6 +43,7 @@ class NodeTest extends TestCase
         $this->assertFalse(isset($city['population']));
 
         unset($car['make']);
+
         $this->assertFalse(isset($car['make']));
 
         // Testing OffsetSet
@@ -50,6 +51,7 @@ class NodeTest extends TestCase
         $this->assertEquals('1000m', $cave['altitude']);
 
         $cave['altitude'] = '800m';
+
         $this->assertEquals('800m', $cave['altitude']);
     }
 
@@ -105,7 +107,7 @@ class NodeTest extends TestCase
 
     public function testIndexByAttributeCollision(): void
     {
-        $pizza    = new Node('pizza');
+        $pizza = new Node('pizza');
         $peperoni = new Node('ingredient', ['name' => 'peperoni']);
 
         $pizza->addChild($peperoni);

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class XmlTest extends TestCase
 {
-    const SAMPLE_XML = <<< XML
+    public const SAMPLE_XML = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 <family name="Aircury family">
   <father is="strict father">Jose</father>
@@ -30,7 +30,7 @@ XML;
 </note>
 
 xml;
-        $node      = Xml::parseString($xmlString);
+        $node = Xml::parseString($xmlString);
 
         $this->assertEquals($xmlString, Xml::dump($node));
     }

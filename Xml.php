@@ -16,7 +16,11 @@ class Xml
 
     private static function parseElement(\SimpleXMLElement $element): Node
     {
-        $node = new Node($element->getName(), ((array)$element->attributes())['@attributes'] ?? [], $element->__toString());
+        $node = new Node(
+            $element->getName(),
+            (array) $element->attributes()['@attributes'] ?? [],
+            $element->__toString()
+        );
 
         foreach ($element->children() as $child) {
             /** @var \SimpleXMLElement $child */
@@ -30,6 +34,7 @@ class Xml
     public static function dump(Node $node): string
     {
         $xmlWriter = new \XMLWriter();
+
         $xmlWriter->openMemory();
         $xmlWriter->setIndent(true);
         $xmlWriter->setIndentString('  ');

@@ -33,10 +33,10 @@ class Node implements \ArrayAccess
 
     public function __construct(string $name, array $attributes = [], string $contents = '')
     {
-        $this->name       = $name;
+        $this->name = $name;
         $this->attributes = $attributes;
-        $this->contents   = trim($contents);
-        $this->children   = new NodeCollection();
+        $this->contents = trim($contents);
+        $this->children = new NodeCollection();
     }
 
     public function offsetExists($offset): bool
@@ -69,7 +69,7 @@ class Node implements \ArrayAccess
             $this->namedChildren[$child->name] = new NodeCollection();
         }
 
-        $this->children[]                    = $child;
+        $this->children[] = $child;
         $this->namedChildren[$child->name][] = $child;
 
         return $this;
@@ -163,6 +163,7 @@ class Node implements \ArrayAccess
     public function dump(): string
     {
         $xmlWriter = new \XMLWriter();
+
         $xmlWriter->openMemory();
         $xmlWriter->setIndent(true);
         $xmlWriter->setIndentString('  ');

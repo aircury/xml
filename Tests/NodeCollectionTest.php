@@ -10,7 +10,7 @@ class NodeCollectionTest extends TestCase
 {
     public function testOffsetSetWithoutName(): void
     {
-        $wizard   = new Node('wizard');
+        $wizard = new Node('wizard');
         $students = new NodeCollection([$wizard]);
 
         $this->expectException(\LogicException::class);
@@ -20,7 +20,7 @@ class NodeCollectionTest extends TestCase
 
     public function testValuesArray(): void
     {
-        $wizard   = new Node('wizard');
+        $wizard = new Node('wizard');
         $students = new NodeCollection([$wizard]);
 
         $this->assertCount(1, $students->toValuesArray());
@@ -28,7 +28,7 @@ class NodeCollectionTest extends TestCase
 
     public function testGetIndexBy(): void
     {
-        $wizard   = new Node('wizard', ['name' => 'Harry Potter']);
+        $wizard = new Node('wizard', ['name' => 'Harry Potter']);
         $students = new NodeCollection([$wizard]);
 
         $students->indexByAttribute('name');
@@ -38,8 +38,8 @@ class NodeCollectionTest extends TestCase
 
     public function testFilterByAttribute(): void
     {
-        $wizard1  = new Node('wizard', ['name' => 'Harry Potter']);
-        $wizard2  = new Node('wizard', ['name' => 'Hermione Granger']);
+        $wizard1 = new Node('wizard', ['name' => 'Harry Potter']);
+        $wizard2 = new Node('wizard', ['name' => 'Hermione Granger']);
         $students = new NodeCollection([$wizard1, $wizard2]);
 
         $this->assertCount(1, $students->filterByAttribute('name', 'Harry Potter'));
@@ -47,8 +47,8 @@ class NodeCollectionTest extends TestCase
 
     public function testFilterByClosure(): void
     {
-        $wizard1  = new Node('wizard', ['name' => 'Harry Potter', 'age' => 15]);
-        $wizard2  = new Node('wizard', ['name' => 'Hermione Granger', 'age' => 16]);
+        $wizard1 = new Node('wizard', ['name' => 'Harry Potter', 'age' => 15]);
+        $wizard2 = new Node('wizard', ['name' => 'Hermione Granger', 'age' => 16]);
         $students = new NodeCollection([$wizard1, $wizard2]);
 
         $students->indexByAttribute('name');

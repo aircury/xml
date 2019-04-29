@@ -53,7 +53,7 @@ class NodeCollectionTest extends TestCase
 
         $students->indexByAttribute('name');
 
-        $filtered = $students->filterByClosure(
+        $filtered = $students->filter(
             function (Node $node): bool {
                 return $node['age'] >= 16;
             }

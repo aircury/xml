@@ -18,7 +18,7 @@ class Xml
     {
         $node = new Node(
             $element->getName(),
-            (array) $element->attributes()['@attributes'] ?? [],
+            ((array) $element->attributes())['@attributes'] ?? [],
             $element->__toString()
         );
 

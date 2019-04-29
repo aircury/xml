@@ -1,0 +1,56 @@
+modules:
+    xml:
+        root: $PROJECT_DIR$
+        excluded:
+            - .idea
+        sources:
+            - .
+        tests:
+            - Tests
+        libraries:
+            - vendor
+composer:
+    synchronize: true
+servers:
+    env(REPOSITORY_NAME):
+        host: env(REPOSITORY_NAME).local
+        mappings:
+            $PROJECT_DIR$: /var/www/env(REPOSITORY_NAME)/src/Xml
+deployment:
+    xml:
+        type: SFTP
+        host: env(REPOSITORY_NAME).local
+        url: http://env(REPOSITORY_NAME).local
+        port: 2222
+        private_key: env(PRIVATE_KEY_PATH)
+        mappings:
+            $PROJECT_DIR$: /var/www/env(REPOSITORY_NAME)/src/Xml
+            $PROJECT_DIR$/../..: /var/www/env(REPOSITORY_NAME)
+php:
+    language_level: 7.1
+    xdebug:
+        port: env(XDEBUG_REMOTE_PORT)
+    interpreters:
+        Remote PHP - xml:
+            type: SSH
+            username: www-data
+            host: env(REPOSITORY_NAME).local
+            port: 2222
+            php_path: /usr/bin/php
+            private_key: env(PRIVATE_KEY_PATH)
+            phpunit:
+                configuration: phpunit.xml.dist
+                loader: vendor/autoload.php
+vcs:
+    $PROJECT_DIR$/../..: Git
+run:
+    Tests:
+        type: PHPUnit
+        folder: Tests
+    configure-ide xml:
+        type: PHP Console
+        script: ../../bin/configure-ide
+        parameters: ../src/Collection
+        environment:
+            PRIVATE_KEY_PATH: env(PRIVATE_KEY_PATH)
+            XDEBUG_REMOTE_PORT: env(XDEBUG_REMOTE_PORT)

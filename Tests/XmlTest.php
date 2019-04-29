@@ -53,5 +53,6 @@ xml;
         $node = Xml::parseFile('/tmp/test.xml');
 
         $this->assertInstanceOf(Node::class, $node);
+        $this->assertSame('Aircury family', $node->attributes['name']);
     }
 }

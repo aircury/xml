@@ -24,7 +24,7 @@
     },
     "config": {
         "preferred-install": {
-            "*": "source"
+            "*": "dist"
         },
         "sort-packages": true,
         "bin-dir": "bin",

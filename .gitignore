@@ -1,6 +1,3 @@
 /vendor/
-
-# IDE
-.idea/
-Xml.iml
 /bin/*
+.phpunit.result.cache

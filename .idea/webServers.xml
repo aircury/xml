@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="40ef5548-05af-4471-aa13-10845500c668" name="aircury" url="http://aircury.local">
+        <fileTransfer rootFolder="/var/www/aircury/src/Xml" accessType="SFTP" host="aircury.local" port="2222" sshConfigId="176e43ea-b7f6-4778-b6c4-2e68dddfda31" sshConfig="www-data@aircury.local:2222 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

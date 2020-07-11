@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="php@60ac151f-6b03-4b71-8ec6-a697ebd8bd0e">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/../.." remote-root="/var/www/aircury" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>

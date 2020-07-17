@@ -8,8 +8,8 @@ XML manipulation with PHP made easy
 
 ### Download the library
 
-This library makes use of Composer. You need to have it on your machine. See [Composer][3] for instructions. Here we 
-are assuming that you have Composer installed globally. 
+This library makes use of Composer. You need to have it on your machine. See [Composer][3] for instructions. Here we
+are assuming that you have Composer installed globally.
 
 ```bash
 $ composer require aircury/xml
@@ -20,17 +20,17 @@ $ composer require aircury/xml
 ### Class documentation
 
 #### Xml
-  * `parseString(string $xmlString): Node` Given an xml string, parses that string into a Node object.  
-  * `parseFile(string $path): Node` Given a path, parses that file into a Node object.  
+  * `parseString(string $xmlString): Node` Given an xml string, parses that string into a Node object.
+  * `parseFile(string $path): Node` Given a path, parses that file into a Node object.
   * `dump(Node $node): string` Giving any Node, will dump it into an xml string.
 
 #### Node
 
 Node is the base class.
 
-If you want to set some attributes, there are three options:   
-  1. You can pass them to the constructor. E.g. `new Node('pizza', ['crust' => 'classic'])`   
-  2. Node implements \ArrayAccess, so you can use `$pizza['crust']` for setting or reading the attributes.   
+If you want to set some attributes, there are three options:
+  1. You can pass them to the constructor. E.g. `new Node('pizza', ['crust' => 'classic'])`
+  2. Node implements \ArrayAccess, so you can use `$pizza['crust']` for setting or reading the attributes.
   3. Node has a public attribute called `attributes`, so you can access them directly.
      `$pizza->attributes['crust'] = 'classic';`
 
@@ -40,10 +40,10 @@ It is a collection of nodes.
 
 ##### Methods
   * `indexByAttribute(string $attribute): NodeCollection` Given an attribute it will index the collection by it
-  * `getNamedChildren(string $childName, array $attributes = [], bool $createIfMissing = false): NodeCollection` Get a 
+  * `getNamedChildren(string $childName, array $attributes = [], bool $createIfMissing = false): NodeCollection` Get a
      subset of the child nodes, filtered by `$attributes`. If `$createIfMissing` is passed, it will ensure it is created
      if there are no matches.
-  * `getNamedChild(string $childName, array $attributes = [], bool $createIfMissing = true): Node` Same as 
+  * `getNamedChild(string $childName, array $attributes = [], bool $createIfMissing = true): Node` Same as
     `getNamedChildren` but expecting only one match.
 
 ### Example
@@ -64,7 +64,7 @@ $pizza['crust'] = 'classic'; // Set the crust attribute of the pizza node
 unset($peperoni['spicy']); // Remove an attirbute from the peperoni ingredient node
 
 if (isset($peperoni['spicy'])) {
-    // ... 
+    // ...
 }
 
 // Get all the 'ingredient' nodes of the 'pizza'
